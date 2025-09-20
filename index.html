@@ -1,56 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Family Quiz Game</title>
-  <link rel="stylesheet" href="styles.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>If I Were...</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <div class="container">
-    <h1>🎉 Family Personality Quiz 🎉</h1>
+    <header>
+      <h1>If I Were...</h1>
+      <p class="subtitle">A family-friendly multiplayer personality quiz</p>
+    </header>
 
     <!-- Setup Phase -->
     <div id="setup" class="game-phase">
       <div class="card">
         <h2>Host a Game</h2>
-        <input id="host-name" placeholder="Your name"/>
-        <input id="player-count" type="number" min="2" max="10" value="4"/>
+        <input id="host-name" placeholder="Your name" />
+        <label for="player-count">Number of players (2-8)</label>
+        <select id="player-count">
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4" selected>4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+        </select>
         <button id="create-room" class="btn btn-primary">Create Room</button>
       </div>
 
       <div class="card">
         <h2>Join a Game</h2>
-        <input id="join-name" placeholder="Your name"/>
-        <input id="join-code" placeholder="Room code"/>
+        <input id="join-name" placeholder="Your name" />
+        <input id="join-code" placeholder="Room code (e.g. ABCD)" />
         <button id="join-room" class="btn btn-secondary">Join Room</button>
       </div>
     </div>
 
     <!-- Lobby Phase -->
-    <div id="lobby" class="game-phase" style="display:none;">
+    <div id="lobby" class="game-phase" style="display:none">
       <div class="card">
         <h2>Lobby</h2>
-        <p>Room Code: <span id="room-code"></span></p>
+        <p>Room Code: <strong><span id="room-code"></span></strong></p>
+        <h3>Players</h3>
         <ul id="player-list"></ul>
-        <button id="start-game" class="btn btn-success" style="display:none;">Start Game</button>
+        <div id="host-controls" style="margin-top:12px;">
+          <button id="start-game" class="btn btn-primary" style="display:none">🚀 Start Game</button>
+        </div>
       </div>
     </div>
 
     <!-- Quiz Phase -->
-    <div id="quiz-phase" class="game-phase" style="display:none;">
-      <div class="card">
-        <h2>Quiz Time 🎉</h2>
-        <p id="quiz-question">[Question will appear here]</p>
-        <div id="quiz-answers">
-          <button class="btn btn-primary">Option A</button>
-          <button class="btn btn-primary">Option B</button>
-          <button class="btn btn-primary">Option C</button>
+    <div id="quiz-phase" class="game-phase" style="display:none">
+      <div class="card quiz-card" id="quiz-card">
+        <div class="quiz-header">
+          <div id="quiz-progress"></div>
         </div>
+        <div id="quiz-question" class="quiz-question">[Question will appear here]</div>
+        <div id="quiz-options" class="quiz-options"></div>
+      </div>
+
+      <div id="quiz-waiting" class="card" style="display:none; text-align:center;">
+        <h2>Waiting for others to finish...</h2>
+        <p>Players finished:</p>
+        <ul id="finished-list"></ul>
       </div>
     </div>
+
+    <!-- Guessing Phase (skeleton) -->
+    <div id="guessing-phase" class="game-phase" style="display:none">
+      <div class="card">
+        <h2>Guessing Phase (coming soon)</h2>
+        <p>This is where the guessing/reveal screens will appear.</p>
+      </div>
+    </div>
+
   </div>
 
-  <script src="script.js"></script>
+  <!-- Use a module script so we can import Firebase (paste your config in script.js) -->
+  <script type="module" src="script.js"></script>
 </body>
 </html>
