@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Family Quiz Game</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>🎉 Family Personality Quiz 🎉</h1>
+
+    <!-- Setup Phase -->
+    <div id="setup" class="game-phase">
+      <div class="card">
+        <h2>Host a Game</h2>
+        <input id="host-name" placeholder="Your name"/>
+        <input id="player-count" type="number" min="2" max="10" value="4"/>
+        <button id="create-room" class="btn btn-primary">Create Room</button>
+      </div>
+
+      <div class="card">
+        <h2>Join a Game</h2>
+        <input id="join-name" placeholder="Your name"/>
+        <input id="join-code" placeholder="Room code"/>
+        <button id="join-room" class="btn btn-secondary">Join Room</button>
+      </div>
+    </div>
+
+    <!-- Lobby Phase -->
+    <div id="lobby" class="game-phase" style="display:none;">
+      <div class="card">
+        <h2>Lobby</h2>
+        <p>Room Code: <span id="room-code"></span></p>
+        <ul id="player-list"></ul>
+        <button id="start-game" class="btn btn-success" style="display:none;">Start Game</button>
+      </div>
+    </div>
+
+    <!-- Quiz Phase -->
+    <div id="quiz-phase" class="game-phase" style="display:none;">
+      <div class="card">
+        <h2>Quiz Time 🎉</h2>
+        <p id="quiz-question">[Question will appear here]</p>
+        <div id="quiz-answers">
+          <button class="btn btn-primary">Option A</button>
+          <button class="btn btn-primary">Option B</button>
+          <button class="btn btn-primary">Option C</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
