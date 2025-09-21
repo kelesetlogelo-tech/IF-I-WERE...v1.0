@@ -154,9 +154,21 @@ class Game {
     return Array.from({length:4}, () => letters.charAt(Math.floor(Math.random()*letters.length))).join('');
   }
 
-  switchPhase(phaseId) {
-    document.querySelectorAll('.game-phase').forEach(s => s.style.display = 'none');
-    document.getElementById(phaseId).style.display = 'block';
+  class Game {
+  constructor() {
+    // ... constructor code ...
+  
+    // Show "Start Game" button if host is in the lobby phase
+    const startBtn = document.getElementById('start-game');
+    if (phaseId === 'lobby' && this.isHost && startBtn) {
+      startBtn.style.display = 'inline-block';
+    } else if (startBtn) {
+      startBtn.style.display = 'none';
+    }
+  }
+
+  // ... rest of Game class ...
+}
   }
 
   async hostGame(playerName, playerCount) {
