@@ -244,7 +244,7 @@ class Game {
 
       // If host, check if all players finished to show NEXT PHASE
       if (this.isHost) {
-        # fetch current players list too
+        // fetch current players list too
         get(ref(db, `rooms/${this.roomCode}/players`)).then(snap => {
           const players = snap.exists() ? Object.keys(snap.val()) : [];
           const finished = Object.entries(status).filter(([p,s]) => s === 'finished').map(x=>x[0]);
