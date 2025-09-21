@@ -157,7 +157,12 @@ class Game {
   switchPhase(phaseId) {
     document.querySelectorAll('.game-phase').forEach(s => s.style.display = 'none');
     document.getElementById(phaseId).style.display = 'block';
+    class Game {
+  constructor(isHost) {
+    this.isHost = isHost; // Ensure isHost is set when creating a Game instance
+  }
 
+  updateStartButton(phaseId) {
     // Show "Start Game" button if host is in the lobby phase
     const startBtn = document.getElementById('start-game');
     if (phaseId === 'lobby' && this.isHost && startBtn) {
