@@ -103,7 +103,7 @@ const QUESTIONS = [
       "The “I thought no one was watching” move",
       "The knee-pop followed by a regretful sit-down",
       "The Macarena: I know I can do it, but I'm not quite sure why",
-      'That "running to the bathroom" shuffle: the desperate high-speed march with clenched-up posture and wild eyes'
+      "That 'running to the bathroom' shuffle: the desperate high-speed march with clenched-up posture and wild eyes"
     ]
   },
   {
