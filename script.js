@@ -55,7 +55,7 @@ const QUESTIONS = [
     text: "If I were a bedtime excuse, I'd be ....",
     options: [
       "I need to find the remote",
-      'I can\'t sleep without "Pillow"',
+      'I can't sleep without "\Pillow\"',
       "Trying to find my way out of this rabbit hole of YouTube videos",
       "I need water",
       "There's something in my closet",
