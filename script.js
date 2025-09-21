@@ -110,7 +110,7 @@ const QUESTIONS = [
     text: "If I were a text message, I'd be ....",
     options: [
       "A typo-ridden voice-to-text disaster",
-      "A three-hour late "LOL"",
+      'A three-hour late "LOL"',
       "A group chat gif spammer",
       "A mysterious "K." with no context"
     ]
