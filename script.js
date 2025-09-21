@@ -41,7 +41,7 @@ const QUESTIONS = [
       "The frantic hoot of a Siyaya (taxi)",
       "Evil laugh!",
       "A mix of Kwaito & Amapiano basslines from a shebeen",
-      ""Ta-da!"",
+      "Ta-da!",
       "Dramatic gasp",
       "The hiss of a shaken carbonated drink"
     ]
