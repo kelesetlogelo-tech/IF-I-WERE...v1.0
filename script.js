@@ -154,10 +154,10 @@ class Game {
     return Array.from({length:4}, () => letters.charAt(Math.floor(Math.random()*letters.length))).join('');
   }
 
-  class Game {
-  constructor() {
-    // ... constructor code ...
-  
+  switchPhase(phaseId) {
+    document.querySelectorAll('.game-phase').forEach(s => s.style.display = 'none');
+    document.getElementById(phaseId).style.display = 'block';
+
     // Show "Start Game" button if host is in the lobby phase
     const startBtn = document.getElementById('start-game');
     if (phaseId === 'lobby' && this.isHost && startBtn) {
@@ -169,7 +169,6 @@ class Game {
 
   // ... rest of Game class ...
 }
-  }
 
   async hostGame(playerName, playerCount) {
     if (!db) { alert('Firebase not configured. Paste your firebaseConfig in script.js.'); return; }
