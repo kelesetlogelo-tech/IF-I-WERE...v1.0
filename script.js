@@ -9,20 +9,14 @@ import {
   getDatabase, ref, set, get, onValue, update
 } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-database.js";
 
-/* ====== PASTE YOUR FIREBASE CONFIG HERE ======
 const firebaseConfig = {
-  apiKey: "PASTE_API_KEY",
-  authDomain: "PASTE_AUTH_DOMAIN",
-  databaseURL: "PASTE_DATABASE_URL",
-  projectId: "PASTE_PROJECT_ID",
-  storageBucket: "PASTE_STORAGE_BUCKET",
-  messagingSenderId: "PASTE_MESSAGING_SENDER_ID",
-  appId: "PASTE_APP_ID"
-};
-============================================== */
-
-const firebaseConfig = {
-  // <-- replace with your config
+  apiKey: "AIzaSyA...yourKey...",
+  authDomain: "your-project.firebaseapp.com",
+  databaseURL: "https://your-project-default-rtdb.firebaseio.com",
+  projectId: "your-project",
+  storageBucket: "your-project.appspot.com",
+  messagingSenderId: "1234567890",
+  appId: "1:1234567890:web:abcdefg12345",
 };
 
 let app, db;
