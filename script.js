@@ -306,7 +306,7 @@ class Game {
 
     if (this.currentQuestion >= QUESTIONS.length) {
       // finished all questions
-      # save answers and mark finished
+     // save answers and mark finished
       update(ref(db, `rooms/${this.roomCode}/answers/${this.playerName}`), this.answers).catch(()=>{});
       update(ref(db, `rooms/${this.roomCode}/status`), { [this.playerName]: 'finished' }).catch(()=>{});
       card.style.display = 'none';
@@ -334,7 +334,7 @@ class Game {
     this.answers[qIndex] = answer;
     update(ref(db, `rooms/${this.roomCode}/answers/${this.playerName}`), { [qIndex]: answer }).catch(()=>{});
 
-    # animate slide out then advance
+    // animate slide out then advance
     const card = document.getElementById('quiz-card');
     card.classList.add('slide-out');
     setTimeout(() => {
