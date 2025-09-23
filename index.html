@@ -7,34 +7,36 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <div id="setup" class="game-phase">
+  <div class="container">
     <h1>If I Were...</h1>
-    <input id="player-name" type="text" placeholder="Enter your name" />
-    <br><br>
-    <button onclick="game.hostGame(document.getElementById('player-name').value, 4)">
-      Create Room
-    </button>
-    <br><br>
-    <input id="room-code-input" type="text" placeholder="Room Code" />
-    <button onclick="game.joinRoom(
-        document.getElementById('room-code-input').value,
-        document.getElementById('player-name').value)">
-      Join Room
-    </button>
-  </div>
 
-  <div id="lobby" class="game-phase" style="display:none;">
-    <h2>Lobby</h2>
-    <p>Room Code: <span id="room-code"></span></p>
-    <ul id="player-list"></ul>
-    <button id="start-game" onclick="game.startGame()" style="display:none;">
-      Start Game
-    </button>
-  </div>
+    <!-- Host Setup Phase -->
+    <div id="host-setup" class="game-phase">
+      <h2>Create or Join a Room</h2>
+      <input id="player-name" type="text" placeholder="Your Name" />
+      <br />
+      <input id="player-count" type="number" min="2" max="10" placeholder="Number of Players" />
+      <br />
+      <button id="create-room">Create Room</button>
+      <br />
+      <input id="room-code-input" type="text" placeholder="Enter Room Code" />
+      <button id="join-room">Join Room</button>
+    </div>
 
-  <div id="quiz-phase" class="game-phase" style="display:none;">
-    <h2>Quiz</h2>
-    <div id="quiz-container"></div>
+    <!-- Lobby Phase -->
+    <div id="lobby" class="game-phase">
+      <h2>Lobby</h2>
+      <p>Room Code: <span id="room-code"></span></p>
+      <h3>Players:</h3>
+      <ul id="player-list"></ul>
+      <button id="start-game" style="display:none;">Start Game</button>
+    </div>
+
+    <!-- Quiz Phase -->
+    <div id="quiz-phase" class="game-phase">
+      <h2 id="question-text"></h2>
+      <div id="options-container"></div>
+    </div>
   </div>
 
   <script type="module" src="script.js"></script>
