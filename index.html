@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>If I Were...</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
@@ -14,11 +14,9 @@
     <div id="host-setup" class="game-phase">
       <h2>Create or Join a Room</h2>
       <input id="player-name" type="text" placeholder="Your Name" />
-      <br />
       <input id="player-count" type="number" min="2" max="10" placeholder="Number of Players" />
-      <br />
       <button id="create-room">Create Room</button>
-      <br />
+      <div style="height:12px"></div>
       <input id="room-code-input" type="text" placeholder="Enter Room Code" />
       <button id="join-room">Join Room</button>
     </div>
@@ -26,17 +24,40 @@
     <!-- Lobby Phase -->
     <div id="lobby" class="game-phase">
       <h2>Lobby</h2>
-      <p>Room Code: <span id="room-code"></span></p>
+      <p>Room Code: <strong><span id="room-code"></span></strong></p>
       <h3>Players:</h3>
       <ul id="player-list"></ul>
-      <button id="start-game" style="display:none;">Start Game</button>
+      <div id="host-controls"></div>
     </div>
 
     <!-- Quiz Phase -->
     <div id="quiz-phase" class="game-phase">
-      <h2 id="question-text"></h2>
-      <div id="options-container"></div>
+      <div class="card">
+        <h2 id="question-text"></h2>
+        <div id="options-container"></div>
+      </div>
     </div>
+
+    <!-- Guessing Phase -->
+    <div id="guessing-phase" class="game-phase">
+      <div class="card">
+        <h2 id="guess-question-text"></h2>
+        <p class="muted">Guess which player wrote this answer:</p>
+        <div id="guess-answer" class="guess-answer"></div>
+        <div id="guess-buttons" class="guess-buttons"></div>
+        <div id="guess-status" style="margin-top:12px;"></div>
+        <div id="host-guess-controls" style="margin-top:14px;"></div>
+      </div>
+    </div>
+
+    <!-- Results Phase -->
+    <div id="results-phase" class="game-phase">
+      <div class="card">
+        <h2>Results</h2>
+        <ul id="scores-list"></ul>
+      </div>
+    </div>
+
   </div>
 
   <script type="module" src="script.js"></script>
