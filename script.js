@@ -17,138 +17,120 @@ try {
   app = initializeApp(firebaseConfig);
   db = getDatabase(app);
 } catch (err) {
-  console.warn("Firebase not initialized");
+  console.warn("Firebase not initialized - paste your firebaseConfig in script.js");
 }
 
-// ✅ Question bank (short sample)
+// ✅ Question bank (clean + safe quotes)
 const QUESTIONS = [
-  { text: "If I were a sound effect, I'd be ....", options: ["The frantic hoot of a Siyaya (taxi)", "Evil laugh!", "Ta-da!"] },
-  { text: "If I were a breakfast cereal, I'd be ....", options: ["Jungle Oats", "Weetbix", "Rice Krispies"] }
+  { 
+    text: "If I were a sound effect, I'd be ....", 
+    options: [
+      "The frantic hoot of a Siyaya (taxi)", 
+      "Evil laugh!", 
+      "A mix of Kwaito & Amapiano basslines from a shebeen", 
+      "Ta-da!", 
+      "Dramatic gasp", 
+      "The hiss of a shaken carbonated drink"
+    ] 
+  },
+  { 
+    text: "If I were a weather-forecast, I'd be ....", 
+    options: [
+      "Partly dramatic with a chance of chaos", 
+      "Sudden tornado of opinions", 
+      "100% chill", 
+      "Heatwave in Limpopo", 
+      "The calm before the storm: I'm a quiet observer until I have had too much coffee!", 
+      "Severe weather alert for a sudden unexplainable urge to reorganize my entire living space"
+    ] 
+  },
+  { 
+    text: "If I were a bedtime excuse, I'd be ....", 
+    options: [
+      "I need to find the remote", 
+      "I can't sleep without Pillow", 
+      "Trying to find my way out of this rabbit hole of YouTube videos", 
+      "I need water", 
+      "There's something in my closet", 
+      "Just one more episode", 
+      "There's a spider in my room"
+    ] 
+  },
+  { 
+    text: "If I were a breakfast cereal, I'd be ....", 
+    options: [
+      "Jungle Oats", 
+      "Weetbix", 
+      "The weird healthy one that keeps piling up in the pantry", 
+      "Rice Krispies", 
+      "Bokomo Cornflakes", 
+      "MorVite"
+    ] 
+  },
+  { 
+    text: "If I were a villain in a movie, I'd be ....", 
+    options: [
+      "Thanos", 
+      "Grinch", 
+      "Scarlet Overkill", 
+      "A mosquito in your room at night", 
+      "Darth Vader", 
+      "Doctor Doom", 
+      "Emperor Palpatine"
+    ] 
+  },
+  { 
+    text: "If I were a kitchen appliance, I'd be ....", 
+    options: [
+      "A blender on high speed with no lid", 
+      "A toaster that only pops when no one’s looking", 
+      "A microwave that screams when it’s done", 
+      "A fridge that judges your snack choices"
+    ] 
+  },
+  { 
+    text: "If I were a dance move, I'd be ....", 
+    options: [
+      "The sprinkler: I'm a little awkward, a little stiff and probably hitting the person next to me!", 
+      "The moonwalk: I'm trying to move forward, but somehow end up where I started...", 
+      "The I thought no one was watching move", 
+      "The knee-pop followed by a regretful sit-down", 
+      "The Macarena: I know I can do it, but I'm not quite sure why", 
+      "That running to the bathroom shuffle: the desperate high-speed march with clenched-up posture and wild eyes"
+    ] 
+  },
+  { 
+    text: "If I were a text message, I'd be ....", 
+    options: [
+      "A typo-ridden voice-to-text disaster", 
+      "A three-hour late LOL", 
+      "A group chat gif spammer", 
+      "A mysterious K. with no context"
+    ] 
+  },
+  { 
+    text: "If I were a warning label, I'd be ....", 
+    options: [
+      "Caution: May spontaneously break into song", 
+      "Warning: Contains high levels of optimism and creative ideas, but only after caffeine", 
+      "Contents may cause uncontrollable giggles", 
+      "Warning: Do not operate on an empty stomach", 
+      "Warning: Will talk your ear off about random facts", 
+      "May contain traces of impulsive decisions", 
+      "Caution: Do not interrupt during a new K-Pop music video release", 
+      "Warning: Do not approach before first cup of coffee"
+    ] 
+  },
+  { 
+    text: "If I were a type of chair, I'd be ....", 
+    options: [
+      "That sofa at Phala Phala", 
+      "A creaky antique that screams when you sit", 
+      "One of those folding chairs that attack your fingers", 
+      "The overstuffed armchair covered in snack crumbs", 
+      "The velvet fainting couch - I'm a little dramatic... a lot extra actually!"
+    ] 
+  }
 ];
 
-class Game {
-  constructor() {
-    this.roomCode = null;
-    this.playerName = null;
-    this.isHost = false;
-    this.currentQuestion = 0;
-  }
-
-  generateRoomCode() {
-    const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    return Array.from({ length: 4 }, () =>
-      letters.charAt(Math.floor(Math.random() * letters.length))
-    ).join('');
-  }
-
-  switchPhase(phaseId) {
-    document.querySelectorAll('.game-phase').forEach(s => s.style.display = 'none');
-    const phaseEl = document.getElementById(phaseId);
-    if (phaseEl) phaseEl.style.display = 'block';
-  }
-
-  async hostGame(playerName, playerCount) {
-    console.log("DEBUG: hostGame called", playerName, playerCount);
-    if (!db) return;
-    this.isHost = true;
-    this.playerName = playerName || 'Host';
-    this.roomCode = this.generateRoomCode();
-    const roomRef = ref(db, `rooms/${this.roomCode}`);
-    await set(roomRef, {
-      host: this.playerName,
-      maxPlayers: playerCount || 4,
-      players: { [this.playerName]: true },
-      started: false
-    });
-    this.listenForPlayers();
-    this.switchPhase('lobby');
-  }
-
-  async joinRoom(code, playerName) {
-    if (!db) return;
-    const roomCode = (code || '').toUpperCase();
-    const roomRef = ref(db, `rooms/${roomCode}`);
-    const snap = await get(roomRef);
-    if (!snap.exists()) {
-      alert('Room not found!');
-      return;
-    }
-    const room = snap.val();
-    const players = room.players ? Object.keys(room.players) : [];
-    if (players.length >= (room.maxPlayers || 4)) {
-      alert('Room is full!');
-      return;
-    }
-    this.roomCode = roomCode;
-    this.playerName = playerName || 'Player';
-    await update(ref(db, `rooms/${roomCode}/players`), { [this.playerName]: true });
-    this.listenForPlayers();
-    this.switchPhase('lobby');
-  }
-
-  async startGame() {
-    if (!db || !this.isHost) return;
-    this.currentQuestion = 0;
-    this.showQuestion();
-    this.switchPhase('quiz-phase');
-  }
-
-  showQuestion() {
-    const container = document.getElementById('quiz-container');
-    if (!container) return;
-
-    const q = QUESTIONS[this.currentQuestion];
-    if (!q) return;
-
-    container.innerHTML = `
-      <div class="quiz-card">
-        <h3>${q.text}</h3>
-        <ul>
-          ${q.options.map(opt => `<li><button class="pill-btn answer-btn">${opt}</button></li>`).join('')}
-        </ul>
-      </div>
-    `;
-  }
-
-  listenForPlayers() {
-    const playerListEl = document.getElementById('player-list');
-    const playersRef = ref(db, `rooms/${this.roomCode}/players`);
-    onValue(playersRef, (snapshot) => {
-      const players = snapshot.val() || {};
-      if (playerListEl) {
-        playerListEl.innerHTML = '';
-        Object.keys(players).forEach(p => {
-          const li = document.createElement('li');
-          li.textContent = p;
-          playerListEl.appendChild(li);
-        });
-      }
-      const roomCodeEl = document.getElementById('room-code');
-      if (roomCodeEl) roomCodeEl.textContent = this.roomCode;
-
-      // Show start button if all players joined and host
-      if (this.isHost && Object.keys(players).length >= 2) {
-        document.getElementById('start-game').style.display = 'inline-block';
-      }
-    });
-  }
-}
-
-const game = new Game();
-
-// Event listeners
-document.getElementById("create-room").addEventListener("click", async () => {
-  const name = document.getElementById("host-name").value.trim() || "Host";
-  const playerCount = parseInt(document.getElementById("player-count").value) || 4;
-  await game.hostGame(name, playerCount);
-});
-
-document.getElementById("join-room").addEventListener("click", async () => {
-  const name = document.getElementById("join-name").value.trim() || "Player";
-  const code = document.getElementById("join-code").value.trim();
-  await game.joinRoom(code, name);
-});
-
-document.getElementById("start-game").addEventListener("click", async () => {
-  await game.startGame();
-});
+// TODO: Rest of game logic here (hostGame, joinRoom, etc.)

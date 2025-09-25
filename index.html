@@ -1,35 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>If I Were...</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <div id="setup" class="game-phase">
-    <h1>If I Were...</h1>
-    <h2>Create a Game</h2>
-    <input id="host-name" placeholder="Your name" />
-    <input id="player-count" type="number" placeholder="Number of players" min="2" max="8" />
-    <button id="create-room" class="pill-btn">Create Room</button>
-
-    <h2>Join a Game</h2>
-    <input id="join-name" placeholder="Your name" />
-    <input id="join-code" placeholder="Room code" maxlength="4" />
-    <button id="join-room" class="pill-btn">Join Room</button>
-  </div>
-
-  <div id="lobby" class="game-phase" style="display:none;">
-    <h2>Lobby</h2>
-    <p>Room Code: <span id="room-code"></span></p>
-    <ul id="player-list"></ul>
-    <button id="start-game" class="pill-btn" style="display:none;">Start Game</button>
-  </div>
-
-  <div id="quiz-phase" class="game-phase" style="display:none;">
-    <div id="quiz-container"></div>
-  </div>
-
+  <h1>If I Were...</h1>
+  <button id="create-room">Create Room</button>
+  <button id="join-room">Join Room</button>
+  <div id="game"></div>
   <script type="module" src="script.js"></script>
 </body>
 </html>
