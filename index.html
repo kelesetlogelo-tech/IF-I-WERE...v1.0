@@ -8,8 +8,13 @@
 </head>
 <body>
   <h1>If I Were...</h1>
-  <button id="create-room">Create Room</button>
-  <button id="join-room">Join Room</button>
+  <input type="text" id="playerName" placeholder="Enter your name" />
+  <input type="text" id="roomCode" placeholder="Enter room code" />
+  <input type="number" id="numPlayers" placeholder="Number of players" />
+
+  <button id="createRoomBtn">Create Room</button>
+  <button id="joinRoomBtn">Join Room</button>
+  <button id="startGameBtn" style="display:none;">Start Game</button>
   <div id="game"></div>
   <script type="module" src="script.js"></script>
 </body>
