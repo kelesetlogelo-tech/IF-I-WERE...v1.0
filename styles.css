@@ -68,9 +68,16 @@ button:hover {
 }
 
 .quiz-card {
-  margin-top: 20px;
-  text-align: left;
-  animation: slideIn 0.5s ease;
+  background: white;
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  max-width: 600px;
+  margin: 20px auto;
+}
+
+.quiz-card h3 {
+  margin-bottom: 15px;
 }
 
 .quiz-card ul {
@@ -82,7 +89,29 @@ button:hover {
   margin: 10px 0;
 }
 
-@keyframes slideIn {
-  from { opacity: 0; transform: translateY(30px); }
-  to { opacity: 1; transform: translateY(0); }
+/* Slide animations */
+.slide-out-left {
+  animation: slideOutLeft 0.5s forwards;
+}
+
+.slide-in-right {
+  animation: slideInRight 0.5s forwards;
+}
+
+@keyframes slideOutLeft {
+  to {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
