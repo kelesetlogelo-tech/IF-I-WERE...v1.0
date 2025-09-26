@@ -1,21 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>If I Were...</title>
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <h1>If I Were...</h1>
-  <input type="text" id="playerName" placeholder="Enter your name" />
-  <input type="text" id="roomCode" placeholder="Enter room code" />
-  <input type="number" id="numPlayers" placeholder="Number of players" />
+  <h1>🎭 If I Were...</h1>
 
-  <button id="createRoomBtn">Create Room</button>
-  <button id="joinRoomBtn">Join Room</button>
-  <button id="startGameBtn" style="display:none;">Start Game</button>
+  <div class="section" id="host-section">
+    <h2>Host a Game</h2>
+    <input type="text" id="playerName" placeholder="Your name">
+    <input type="number" id="numPlayers" placeholder="Number of players (2-8)">
+    <button id="createRoomBtn">Create Room</button>
+  </div>
+
+  <div class="section" id="join-section">
+    <h2>Join a Game</h2>
+    <input type="text" id="roomCode" placeholder="Enter room code">
+    <input type="text" id="joinPlayerName" placeholder="Your name">
+    <button id="joinRoomBtn">Join Game</button>
+  </div>
+
   <div id="game"></div>
+
   <script type="module" src="script.js"></script>
 </body>
 </html>

@@ -1,7 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js";
 import { getDatabase, ref, set, get, onValue, update } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-database.js";
 
-// ✅ Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyA8O6Fh10MNQrdW6cBZnUibVFRB2q5cD1Q",
   authDomain: "if-i-were-c624c.firebaseapp.com",
@@ -19,12 +18,6 @@ try {
 } catch (err) {
   console.warn("Firebase not initialized");
 }
-
-// ✅ Question bank (shortened for brevity)
-const QUESTIONS = [
-  { text: "If I were a sound effect, I'd be ....", options: ["The frantic hoot of a Siyaya (taxi)", "Evil laugh!", "A mix of Kwaito & Amapiano basslines from a shebeen", "Ta-da!", "Dramatic gasp", "The hiss of a shaken carbonated drink"] },
-  { text: "If I were a type of chair, I'd be ....", options: ["That sofa at Phala Phala", "A creaky antique that screams when you sit", "One of those folding chairs that attack your fingers", "The overstuffed armchair covered in snack crumbs", "The velvet fainting couch - I'm a little dramatic... a lot extra actually!"] }
-];
 
 class Game {
   constructor() {
@@ -94,19 +87,7 @@ class Game {
 
   showQuestion() {
     const container = document.getElementById("game");
-    const q = QUESTIONS[this.currentQuestion];
-    if (!q) {
-      container.innerHTML = `<h2>All questions answered!</h2>`;
-      return;
-    }
-    container.innerHTML = `
-      <div class="quiz-card">
-        <h3>${q.text}</h3>
-        <ul>
-          ${q.options.map(opt => `<li><button class="answerBtn">${opt}</button></li>`).join('')}
-        </ul>
-      </div>
-    `;
+    container.innerHTML = `<div class="quiz-card"><h3>Game starting soon...</h3></div>`;
   }
 
   listenForPlayers() {
@@ -131,13 +112,11 @@ const game = new Game();
 document.getElementById("createRoomBtn").addEventListener("click", () => {
   const name = document.getElementById("playerName").value.trim();
   const count = parseInt(document.getElementById("numPlayers").value) || 4;
-  console.log("Creating room with name:", name, "max players:", count);
   game.hostGame(name, count);
 });
 
 document.getElementById("joinRoomBtn").addEventListener("click", () => {
-  const name = document.getElementById("playerName").value.trim();
+  const name = document.getElementById("joinPlayerName").value.trim();
   const code = document.getElementById("roomCode").value.trim();
-  console.log("Joining room:", code, "with name:", name);
   game.joinRoom(code, name);
 });
