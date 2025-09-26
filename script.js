@@ -28,8 +28,8 @@ const QUESTIONS = [
   { text: "If I were a breakfast cereal, I'd be ....", options: ["Jungle Oats", "Weetbix", "The weird healthy one that keeps piling up in the pantry", "Rice Krispies", "Bokomo Cornflakes", "MorVite"] },
   { text: "If I were a villain in a movie, I'd be ....", options: ["Thanos", "Grinch", "Scarlet Overkill", "A mosquito in your room at night", "Darth Vader", "Doctor Doom", "Emperor Palpatine"] },
   { text: "If I were a kitchen appliance, I'd be ....", options: ["A blender on high speed with no lid", "A toaster that only pops when no one’s looking", "A microwave that screams when it’s done", "A fridge that judges your snack choices"] },
-  { text: "If I were a dance move, I'd be ....", options: ["The sprinkler", "The moonwalk", "The 'I thought no one was watching' move", "The knee-pop followed by a regretful sit-down", "The Macarena", "That running to the bathroom shuffle"] },
-  { text: "If I were a text message, I'd be ....", options: ["A typo-ridden voice-to-text disaster", "A three-hour late LOL", "A group chat gif spammer", "A mysterious K. with no context"] },
+  { text: "If I were a dance move, I'd be ....", options: ["The sprinkler", "The moonwalk", "The 'I thought no one was watching' move", "The knee-pop followed by a regretful sit-down", "The Macarena", "That 'running to the bathroom' shuffle"] },
+  { text: "If I were a text message, I'd be ....", options: ["A typo-ridden voice-to-text disaster", "A three-hour late 'LOL'", "A group chat gif spammer", "A mysterious K. with no context"] },
   { text: "If I were a warning label, I'd be ....", options: ["Caution: May spontaneously break into song", "Warning: Contains high levels of optimism and creative ideas, but only after caffeine", "Contents may cause uncontrollable giggles", "Warning: Do not operate on an empty stomach", "Warning: Will talk your ear off about random facts", "May contain traces of impulsive decisions", "Caution: Do not interrupt during a new K-Pop music video release", "Warning: Do not approach before first cup of coffee"] },
   { text: "If I were a type of chair, I'd be ....", options: ["That sofa at Phala Phala", "A creaky antique that screams when you sit", "One of those folding chairs that attack your fingers", "The overstuffed armchair covered in snack crumbs", "The velvet fainting couch - I'm a little dramatic... a lot extra actually!"] }
 ];
@@ -222,4 +222,5 @@ document.getElementById("joinRoomBtn").addEventListener("click", () => {
   const code = document.getElementById("roomCode").value.trim();
   game.joinRoom(code, name);
 });
+
 
