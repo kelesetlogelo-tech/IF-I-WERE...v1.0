@@ -1,29 +1,68 @@
 body {
-  font-family: Arial, sans-serif;
-  background: #f9f9f9;
+  font-family: 'Poppins', Arial, sans-serif;
+  background: linear-gradient(135deg, #ff9a9e, #fad0c4, #fad390);
+  min-height: 100vh;
   margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
   padding: 20px;
-  text-align: center;
+  color: #333;
+}
+
+#game {
+  background: white;
+  border-radius: 20px;
+  padding: 30px;
+  width: 100%;
+  max-width: 600px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  animation: fadeIn 0.6s ease;
+}
+
+h1, h2, h3 {
+  margin: 10px 0 20px;
+  color: #444;
 }
 
 button {
   padding: 12px 24px;
-  margin: 10px;
+  margin: 8px;
   border: none;
-  border-radius: 25px;
-  background-color: #6200ea;
+  border-radius: 30px;
+  background: linear-gradient(135deg, #6a11cb, #2575fc);
   color: white;
   font-size: 16px;
+  font-weight: bold;
   cursor: pointer;
-  transition: background 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  transition: all 0.3s ease;
 }
 
 button:hover {
-  background-color: #3700b3;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.2);
+  background: linear-gradient(135deg, #2575fc, #6a11cb);
 }
 
 .quiz-card {
+  margin-top: 20px;
+  text-align: left;
   animation: slideIn 0.5s ease;
+}
+
+.quiz-card ul {
+  list-style: none;
+  padding: 0;
+}
+
+.quiz-card li {
+  margin: 10px 0;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
 }
 
 @keyframes slideIn {
