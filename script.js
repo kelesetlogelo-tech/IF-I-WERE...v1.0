@@ -84,6 +84,16 @@ class Game {
       answers: {}
     });
     this.switchPhase("lobby");
+    listenForPhase() {
+    const phaseRef = ref(db, `rooms/${this.roomCode}/phase`);
+    onValue(phaseRef, (snapshot) => {
+    const phase = snapshot.val();
+    if (phase) {
+      this.switchPhase(phase);
+    }
+  });
+}
+
   }
 
   async joinRoom(code, playerName) {
@@ -100,6 +110,16 @@ class Game {
     await update(ref(db, `rooms/${roomCode}/players`), { [this.playerName]: true });
     await update(ref(db, `rooms/${roomCode}/status`), { [this.playerName]: "in-progress" });
     this.switchPhase("lobby");
+    listenForPhase() {
+    const phaseRef = ref(db, `rooms/${this.roomCode}/phase`);
+    onValue(phaseRef, (snapshot) => {
+    const phase = snapshot.val();
+    if (phase) {
+      this.switchPhase(phase);
+    }
+  });
+}
+
   }
 
   async startGame() {
