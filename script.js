@@ -85,16 +85,14 @@ class Game {
     });
     this.switchPhase("lobby");
     listenForPhase() {
-    const phaseRef = ref(db, `rooms/${this.roomCode}/phase`);
-    onValue(phaseRef, (snapshot) => {
-    const phase = snapshot.val();
-    if (phase) {
-      this.switchPhase(phase);
+      const phaseRef = ref(db, `rooms/${this.roomCode}/phase`);
+      onValue(phaseRef, (snapshot) => {
+        const phase = snapshot.val();
+        if (phase) {
+          this.switchPhase(phase);
+        }
+      });
     }
-  });
-}
-
-  }
 
   async joinRoom(code, playerName) {
     if (!db) return;
@@ -111,16 +109,14 @@ class Game {
     await update(ref(db, `rooms/${roomCode}/status`), { [this.playerName]: "in-progress" });
     this.switchPhase("lobby");
     listenForPhase() {
-    const phaseRef = ref(db, `rooms/${this.roomCode}/phase`);
-    onValue(phaseRef, (snapshot) => {
-    const phase = snapshot.val();
-    if (phase) {
-      this.switchPhase(phase);
+      const phaseRef = ref(db, `rooms/${this.roomCode}/phase`);
+      onValue(phaseRef, (snapshot) => {
+        const phase = snapshot.val();
+        if (phase) {
+          this.switchPhase(phase);
+        }
+      });
     }
-  });
-}
-
-  }
 
   async startGame() {
     if (!db || !this.isHost) return;
@@ -226,3 +222,4 @@ document.getElementById("joinRoomBtn").addEventListener("click", () => {
   const code = document.getElementById("roomCode").value.trim();
   game.joinRoom(code, name);
 });
+
